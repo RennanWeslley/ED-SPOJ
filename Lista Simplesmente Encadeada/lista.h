@@ -19,9 +19,9 @@ int pesquisa(tLista, int);
 int insereInicio(tLista *, int);
 int insereIndx(tLista *, int, int);
 int insere(tLista *, int);
-int excluiInicio(tLista *);
-int excluiIndx(tLista *, int);
-int exclui(tLista *, int);
+int excluiInicio(tLista *, int *);
+int excluiIndx(tLista *, int, int *);
+int exclui(tLista *, int, int *);
 int exibe(tLista);
 
 #endif //LISTA_H
