@@ -12,7 +12,6 @@ typedef struct {
 }tLista;
 
 int vazio(tLista);
-int tamanho(tLista);
 int insere(tLista *, int, int);
 int exclui(tLista *, int);
 int exibe(tLista);
@@ -52,7 +51,7 @@ int main() {
                 exclui(&lista, pos);
                 break;
             case 'q':
-                return 1;
+                return 0;
         }
         
         exibe(lista);
@@ -65,15 +64,12 @@ int vazio(tLista lista) {
     return lista.tam == 0;
 }
 
-int tamanho(tLista lista) {
-    return lista.tam;
-}
-
 int insere(tLista *lista, int pos, int dado) { 
 	tElemento *new = (tElemento *) malloc(sizeof(tElemento));
-	
+	tElemento *p = lista->cabeca;
+    new->dado = dado;
+    
     if(vazio(*lista) || !pos) {
-		new->dado = dado;
 		new->prox = lista->cabeca;
 		lista->cabeca = new;
 		lista->tam++;
@@ -81,14 +77,11 @@ int insere(tLista *lista, int pos, int dado) {
 		return 1;
     }
     
-    tElemento *p = lista->cabeca;
-    
     if(pos >= lista->tam)
         pos = lista->tam;
     
     for(; (pos-1); p = p->prox, pos--);
     
-    new->dado = dado;
     new->prox = p->prox;
     p->prox = new;
     lista->tam++;
@@ -97,26 +90,20 @@ int insere(tLista *lista, int pos, int dado) {
 }
 
 int exclui(tLista *lista, int pos) {
-    if(pos > lista->tam || vazio(*lista))
-        return 0;
-    
     tElemento *p = lista->cabeca;
-    
-    if(pos == 0) {
-		lista->cabeca = lista->cabeca->prox;
-		free(p);
-		lista->tam--;
-		
-		return 1;
-    }
-    
     tElemento *aux;
     
-    for(; (pos-1); p = p->prox, pos--);
+    if(pos > (lista->tam-1) || !p)
+        return 0;
     
-    aux = p->prox->prox;
-    free(p->prox);
-    p->prox = aux;
+    if(!pos)
+		lista->cabeca = p->prox;
+    else {
+    	for(; pos; aux = p, p = p->prox, pos--);
+    	aux->prox = p->prox;
+    }
+    
+    free(p);
     lista->tam--;
     
     return 1;
