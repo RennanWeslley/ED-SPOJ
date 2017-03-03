@@ -21,7 +21,7 @@ int acessa(tLista lista, int pos, int *dado) {
     
     tElemento *p = lista.cabeca;
     
-    for(int i = 1; i < pos; p = p->prox, i++);
+    for(; (pos-1); p = p->prox, pos--);
     
     *dado = p->dado;
     
@@ -55,12 +55,14 @@ int insereInicio(tLista *lista, int dado) {
 }
 
 int insereIndx(tLista *lista, int pos, int dado) {
-    if(pos < 1 || pos > lista->tam)
+    if(pos > lista->tam)
         return 0;
+    if(pos == 0)
+        return insereInicio(lista, dado);
     
     tElemento *p = lista->cabeca;
     
-    for(int i = 1; i < (pos-1); p = p->prox, i++);
+    for(; (pos-2); p = p->prox, pos--);
     
     tElemento *new = (tElemento *) malloc(sizeof(tElemento));
     if(!new)
@@ -75,12 +77,8 @@ int insereIndx(tLista *lista, int pos, int dado) {
 }
 
 int insere(tLista *lista, int dado) {
-    int ret;
-    
-    if(vazio(*lista)) {
-    	ret = insereInicio(lista, dado);
-    	return ret;
-    }
+    if(vazio(*lista)) 
+    	return insereInicio(lista, dado);
     
     tElemento *p = lista->cabeca;
     
@@ -116,7 +114,7 @@ int excluiIndx(tLista *lista, int pos) {
     tElemento *p = lista->cabeca;
     tElemento *aux;
     
-    for(int i = 1; i < (pos-1); p = p->prox, i++);
+    for(; (pos-2); p = p->prox, pos--);
     
     aux = p->prox;
     p->prox = aux->prox;
@@ -127,14 +125,10 @@ int excluiIndx(tLista *lista, int pos) {
 }
 
 int exclui(tLista *lista, int pos) {
-    int ret;
-    
     if(pos == 1)
-        ret = excluiInicio(lista);
+        return excluiInicio(lista);
     else
-        ret = excluiIndx(lista, pos);
-    
-    return ret;
+        return excluiIndx(lista, pos);
 }
 
 int exibe(tLista lista) {
