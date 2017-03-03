@@ -96,14 +96,17 @@ int exclui(tLista *lista, int pos) {
     if(pos > (lista->tam-1) || !p)
         return 0;
     
-    if(!pos)
+    if(!pos) {
 		lista->cabeca = p->prox;
+		free(p);
+	}
     else {
-    	for(; pos; aux = p, p = p->prox, pos--);
-    	aux->prox = p->prox;
+    	for(; (pos-1);  p = p->prox, pos--);
+    	aux = p->prox;
+    	p->prox = aux->prox;
+    	free(aux);
     }
     
-    free(p);
     lista->tam--;
     
     return 1;
