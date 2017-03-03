@@ -13,10 +13,8 @@ typedef struct {
 
 int vazio(tLista);
 int tamanho(tLista);
-int insereInicio(tLista *, int);
-int insereIndx(tLista *, int, int);
-int excluiInicio(tLista *);
-int excluiIndx(tLista *, int);
+int insere(tLista *, int, int);
+int exclui(tLista *, int);
 int exibe(tLista);
 
 int main() {
@@ -36,22 +34,22 @@ int main() {
                 //printf("Digite o valor: ");
                 scanf(" %d", &dado);
                 
-                insereIndx(&lista, 0, dado);
+                insere(&lista, 0, dado);
                 break;
             case 'i':
                 //printf("Digite a posição e o valor: ");
                 scanf(" %d %d", &pos, &dado);
                 
-                insereIndx(&lista, pos, dado);
+                insere(&lista, pos, dado);
                 break;
             case 'r':
-                excluiIndx(&lista, 0);
+                exclui(&lista, 0);
                 break;
             case 'd':
                 //printf("Digite a posição: ");
                 scanf(" %d", &pos);
                 
-                excluiIndx(&lista, pos);
+                exclui(&lista, pos);
                 break;
             case 'q':
                 return 1;
@@ -71,20 +69,17 @@ int tamanho(tLista lista) {
     return lista.tam;
 }
 
-int insereInicio(tLista *lista, int dado) {
-    tElemento *p = (tElemento *) malloc(sizeof(tElemento));
-    
-    p->dado = dado;
-    p->prox = lista->cabeca;
-    lista->cabeca = p;
-    lista->tam++;
-    
-    return 1;
-}
-
-int insereIndx(tLista *lista, int pos, int dado) { 
-    if(vazio(*lista) || !pos)
-        return insereInicio(lista, dado);
+int insere(tLista *lista, int pos, int dado) { 
+	tElemento *new = (tElemento *) malloc(sizeof(tElemento));
+	
+    if(vazio(*lista) || !pos) {
+		new->dado = dado;
+		new->prox = lista->cabeca;
+		lista->cabeca = new;
+		lista->tam++;
+		
+		return 1;
+    }
     
     tElemento *p = lista->cabeca;
     
@@ -92,8 +87,6 @@ int insereIndx(tLista *lista, int pos, int dado) {
         pos = lista->tam;
     
     for(; (pos-1); p = p->prox, pos--);
-    
-    tElemento *new = (tElemento *) malloc(sizeof(tElemento));
     
     new->dado = dado;
     new->prox = p->prox;
@@ -103,25 +96,20 @@ int insereIndx(tLista *lista, int pos, int dado) {
     return 1;
 }
 
-int excluiInicio(tLista *lista) {
-    if(vazio(*lista)) 
+int exclui(tLista *lista, int pos) {
+    if(pos > lista->tam || vazio(*lista))
         return 0;
     
     tElemento *p = lista->cabeca;
-    lista->cabeca = lista->cabeca->prox;
-    free(p);
-    lista->tam--;
     
-    return 1;
-}
-
-int excluiIndx(tLista *lista, int pos) {
-    if(pos > lista->tam)
-        return 0;
-    else if(pos == 0)
-        return excluiInicio(lista);
+    if(pos == 0) {
+		lista->cabeca = lista->cabeca->prox;
+		free(p);
+		lista->tam--;
+		
+		return 1;
+    }
     
-    tElemento *p = lista->cabeca;
     tElemento *aux;
     
     for(; (pos-1); p = p->prox, pos--);
