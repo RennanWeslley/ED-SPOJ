@@ -63,6 +63,7 @@ int insereInicio(tLista *lista, int dado) {
     if(!new)
         return 0;
     
+    new->dado = dado;
     if(!tam(*lista)) {
     	new->prox = NULL;
     	new->ant = NULL;
@@ -70,13 +71,13 @@ int insereInicio(tLista *lista, int dado) {
     	lista->ponta = new;
     }
     else {
-		new->dado = dado;
 		new->ant = NULL;
 		new->prox = p;
 		p->ant = new;
 		lista->cabeca = new;
     }
     
+    p = lista->cabeca;
 	for(; p->prox; p = p->prox);
 		lista->ponta = p;
     
@@ -105,21 +106,23 @@ int insereIndx(tLista *lista, int pos, int dado) {
         
         for(; (pos-2); p->ant, pos--);
         
-        printf("\n\n....................%d.................\n\n", p->dado);
         new->ant = p->ant;
         p->ant->prox = new;
         p->ant = new;
         new->prox = p;
-    }
-    else {
-        for(; (pos-2); p->prox, pos--);
         
-        new->prox = p->prox;
-        p->prox->ant = new;
-        p->prox = new;
-        new->ant = p;
+        lista->tam++;
+        
+        return 1;
     }
     
+    for(; (pos-2); p->prox, pos--);
+    
+    new->prox = p->prox;
+    p->prox->ant = new;
+    p->prox = new;
+    new->ant = p;
+        
     lista->tam++;
     
     return 1;
