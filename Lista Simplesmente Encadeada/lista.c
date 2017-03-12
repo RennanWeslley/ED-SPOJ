@@ -101,7 +101,7 @@ int excluiInicio(tLista *lista, int *dado) {
     
     tElemento *p = lista->cabeca;
     *dado = p->dado;
-    lista->cabeca = lista->cabeca->prox;
+    lista->cabeca = p->prox;
     free(p);
     lista->tam--;
     

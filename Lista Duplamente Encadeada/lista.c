@@ -89,8 +89,11 @@ int insereInicio(tLista *lista, int dado) {
 int insereIndx(tLista *lista, int pos, int dado) {
     if(pos < 1 || pos > lista->tam+1)
         return 0;
+    
     if(vazio(*lista) || pos == 1)
-        return insereInicio(lista, dado);
+        return insereInicio(lista, dado);  
+    else if(pos == (tam(*lista)+1))
+		return insere(lista, dado); 
     
     tElemento *p = lista->cabeca;
     
@@ -141,6 +144,82 @@ int insere(tLista *lista, int dado) {
 	lista->ponta = new;
 	
 	lista->tam++;
+	return 1;
+}
+
+int excluiInicio(tLista *lista, int *dado) {
+	if(vazio(*lista))
+		return 0;
+		
+	tElemento *p = lista->cabeca;
+	
+	*dado = p->dado;
+	lista->cabeca = p->prox;
+	
+	if(tam(*lista) > 1)
+		lista->cabeca->ant = NULL;
+	
+	free(p);
+	
+	lista->tam--;
+	
+	return 1;
+}
+
+int excluiIndx(tLista *lista, int pos, int *dado) {
+	if(pos < 1 || pos > lista->tam)
+		return 0;
+	else if(pos == 1)
+		return excluiInicio(lista, dado);
+	else if(pos == tam(*lista))
+		return exclui(lista, dado);
+	
+	tElemento *p = lista->cabeca;
+	tElemento *aux;
+	
+	if(pos > (tam(*lista)/2)) {
+		pos = (tam(*lista)+1) - pos;
+		p = lista->ponta;
+		
+		for(; (pos-2) > 0; p = p->ant, pos--);
+		
+		aux = p->ant;
+		*dado = aux->dado;
+		p->ant = aux->ant;
+		aux->ant->prox = p;
+		free(aux);
+	}
+	else {
+		for(; (pos-2) > 0; p = p->prox, pos--);
+		
+		aux = p->prox;
+		*dado = aux->dado;
+		p->prox = aux->prox;
+		aux->prox->ant = p;
+		free(aux);
+	}
+	
+	lista->tam--;
+	
+	return 1;
+}
+
+int exclui(tLista *lista, int *dado) {
+	if(vazio(*lista))
+		return 0;
+		
+	tElemento *p = lista->ponta;
+	
+	*dado = p->dado;
+	lista->ponta = p->ant;
+	
+	if(tam(*lista) > 1)
+		lista->ponta->prox = NULL;
+		
+	free(p);
+	
+	lista->tam--;
+	
 	return 1;
 }
 
