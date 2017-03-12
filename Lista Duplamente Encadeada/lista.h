@@ -18,12 +18,12 @@ int vazio(tLista);
 int tam(tLista);
 int acessa(tLista, int, int *);
 int pesquisa(tLista, int);
-int insereIndx(tLista *, int, int);
 int insereInicio(tLista *, int);
+int insereIndx(tLista *, int, int);
 int insere(tLista *, int);
-int excluiIndx(tLista *, int, int *);
 int excluiInicio(tLista *, int *);
-int excluiFinal(tLista *, int *);
+int excluiIndx(tLista *, int, int *);
+int exclui(tLista *, int *);
 int exibe(tLista);
 int exibeA(tLista);
 

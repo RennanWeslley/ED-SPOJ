@@ -61,7 +61,7 @@ int insereInicio(tLista *lista, int dado) {
 	tElemento *p = lista->cabeca;
     tElemento *new = (tElemento *) malloc(sizeof(tElemento));
     if(!new)
-        return 0;
+        return -1;
     
     new->dado = dado;
     if(!tam(*lista)) {
@@ -125,6 +125,25 @@ int insereIndx(tLista *lista, int pos, int dado) {
     return 1;
 }
 
+int insere(tLista *lista, int dado) {
+	if(vazio(*lista))
+		return insereInicio(lista, dado);
+		
+	tElemento *p = lista->ponta;
+	tElemento *new = (tElemento *) malloc(sizeof(tElemento));
+	if(!new)
+		return -1;
+	
+	new->dado = dado;
+	new->prox = NULL;
+	new->ant = p;
+	p->prox = new;
+	lista->ponta = new;
+	
+	lista->tam++;
+	return 1;
+}
+
 int exibe(tLista lista) {
     if(vazio(lista)) {
         printf("\nLista vazia.\n\n");
@@ -141,7 +160,6 @@ int exibe(tLista lista) {
     return 1;
 }
 
-//Função para testar o caminho inverso da lista.
 int exibeA(tLista lista) {
     if(vazio(lista)) {
         printf("\nLista vazia.\n\n");
