@@ -110,18 +110,15 @@ int insereIndx(tLista *lista, int pos, int dado) {
         p->ant->prox = new;
         p->ant = new;
         new->prox = p;
-        
-        lista->tam++;
-        
-        return 1;
     }
-    
-    for(; (pos-2); p->prox, pos--);
-    
-    new->prox = p->prox;
-    p->prox->ant = new;
-    p->prox = new;
-    new->ant = p;
+    else {
+		for(; (pos-2); p->prox, pos--);
+		
+		new->prox = p->prox;
+		p->prox->ant = new;
+		p->prox = new;
+		new->ant = p;
+    }
         
     lista->tam++;
     

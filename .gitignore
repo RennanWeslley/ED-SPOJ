@@ -1,4 +1,6 @@
 # Object files
+app
+main.c
 *.o
 *.ko
 *.obj
