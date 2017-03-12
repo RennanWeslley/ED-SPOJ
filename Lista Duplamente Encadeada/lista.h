@@ -25,5 +25,6 @@ int excluiIndx(tLista *, int, int *);
 int excluiInicio(tLista *, int *);
 int excluiFinal(tLista *, int *);
 int exibe(tLista);
+int exibeA(tLista);
 
 #endif //LISTA_H

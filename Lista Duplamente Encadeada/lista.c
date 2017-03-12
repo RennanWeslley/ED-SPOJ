@@ -104,7 +104,7 @@ int insereIndx(tLista *lista, int pos, int dado) {
         pos = (tam(*lista)+1) - pos;
         p = lista->ponta;
         
-        for(; (pos-2); p->ant, pos--);
+        for(; (pos-1) > 0; p = p->ant, pos--);
         
         new->ant = p->ant;
         p->ant->prox = new;
@@ -112,7 +112,7 @@ int insereIndx(tLista *lista, int pos, int dado) {
         new->prox = p;
     }
     else {
-		for(; (pos-2); p->prox, pos--);
+		for(; (pos-2) > 0; p = p->prox, pos--);
 		
 		new->prox = p->prox;
 		p->prox->ant = new;
@@ -134,6 +134,23 @@ int exibe(tLista lista) {
     printf("Lista: {");
     for(tElemento *p = lista.cabeca; p; p = p->prox)
         if(!p->prox)
+            printf("%d}\n\n", p->dado);
+        else
+            printf("%d, ", p->dado);
+        
+    return 1;
+}
+
+//Função para testar o caminho inverso da lista.
+int exibeA(tLista lista) {
+    if(vazio(lista)) {
+        printf("\nLista vazia.\n\n");
+        return 0;
+    }
+    
+    printf("Lista: {");
+    for(tElemento *p = lista.ponta; p; p = p->ant)
+        if(!p->ant)
             printf("%d}\n\n", p->dado);
         else
             printf("%d, ", p->dado);
