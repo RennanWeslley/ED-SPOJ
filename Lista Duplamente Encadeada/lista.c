@@ -28,14 +28,14 @@ int acessa(tLista lista, int pos, int *dado) {
         pos = (tam(lista)+1) - pos;
         p = lista.ponta;
         
-        for(; (pos-1); p = p->ant, pos--);
+        for(; (pos-1) > 0; p = p->ant, pos--);
         
         *dado = p->dado;
     }
     else {
         p = lista.cabeca;
         
-        for(; (pos-1); p = p->prox, pos--);
+        for(; (pos-1) > 0; p = p->prox, pos--);
         
         *dado = p->dado;
     }

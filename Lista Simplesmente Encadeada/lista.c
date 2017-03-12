@@ -62,7 +62,7 @@ int insereIndx(tLista *lista, int pos, int dado) {
     
     tElemento *p = lista->cabeca;
     
-    for(; (pos-2); p = p->prox, pos--);
+    for(; (pos-2) > 0; p = p->prox, pos--);
     
     tElemento *new = (tElemento *) malloc(sizeof(tElemento));
     if(!new)
@@ -115,7 +115,7 @@ int excluiIndx(tLista *lista, int pos, int *dado) {
     tElemento *p = lista->cabeca;
     tElemento *aux;
     
-    for(; (pos-2); p = p->prox, pos--);
+    for(; (pos-2) > 0; p = p->prox, pos--);
     
     *dado = p->prox->dado;
     aux = p->prox;
