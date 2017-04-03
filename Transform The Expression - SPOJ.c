@@ -7,7 +7,7 @@ typedef struct node {
     struct node *next;
 }tNode;
 
-typedef struct {
+typedef struct { 
     tNode *top;
 }tStack;
 
