@@ -77,10 +77,6 @@ int insereInicio(tLista *lista, int dado) {
 		lista->cabeca = new;
     }
     
-    p = lista->cabeca;
-	for(; p->prox; p = p->prox);
-		lista->ponta = p;
-    
     lista->tam++;
     
     return 1;
