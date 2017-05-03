@@ -3,8 +3,8 @@
 
 typedef struct node {
     int data;
-    struct node *right;
     struct node *left;
+    struct node *right;
 }tNode;
 
 typedef tNode *BinaryTree;
