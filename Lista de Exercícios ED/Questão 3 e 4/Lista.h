@@ -1,3 +1,10 @@
+ /*
+ *  Lista.h
+ *
+ *  Created on: May 6th, 2017.
+ *  Author: Rennan Weslley
+ */
+
 #ifndef LISTA_H
 #define LISTA_H
 
