@@ -1,6 +1,5 @@
 # Object files
-app
-main.c
+*.out
 *.o
 *.ko
 *.obj
