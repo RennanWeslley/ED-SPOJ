@@ -42,7 +42,7 @@ class List {
         int del(int, int *);
         int delHead(int *);
         int delIndx(int, int *);
-        /* int delBack(tList *, int *); */
+        /* int delBack(int *); */
         
         //PRINT FUNCTION
         string toString();
