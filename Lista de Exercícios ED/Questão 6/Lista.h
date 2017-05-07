@@ -36,7 +36,7 @@ class List {
         int insert(int, int);
         int insertHead(int);
         int insertIndx(int, int);
-        int insertBack(int);
+        /* int insertBack(int); */
         
         //REMOVE FUNCTIONS
         int del(int, int *);
