@@ -1,3 +1,10 @@
+/*
+ *  Main.c
+ *
+ *  Created on: May 8th, 2017.
+ *  Author: Rennan Weslley
+ */
+
 #include "Pilha Encadeada/Pilha.h"
 #include <string.h>
 #include <ctype.h>
