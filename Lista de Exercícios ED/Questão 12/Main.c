@@ -13,15 +13,18 @@ int main() {
     
     init(&tree);
     
-    insertRoot(&tree, 1);
+    insertRoot(&tree, 5);
     
-    insertLeft(tree, 1, 2);
-    insertRight(tree, 1, 3);
+    insertLeft(tree, 5, 3);
+    insertRight(tree, 5, 13);
     
-    insertLeft(tree, 2, 4);
+    insertLeft(tree, 13, 11);
+    insertRight(tree, 13, 19);
     
-    insertLeft(tree, 3, 5);
-    insertRight(tree, 3, 6);
+    insertLeft(tree, 11, 7);
+    
+    insertLeft(tree, 19, 17);
+    insertRight(tree, 19, 23);
     
     preOrder(tree);
     printf("\n\n");

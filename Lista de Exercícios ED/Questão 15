@@ -1,0 +1,9 @@
+Da esquerda para a direita:
+
+1ª Não é AVL, a sub-árvore da esquerda, de raíz 22, está desbalanceada para esquerda.
+
+2ª Não é AVL, a sub-árvore da esquerda, de raíz 22, está desbalanceada para esquerda.
+
+3ª É uma AVL, ambos os lados estão balanceados (apesar de vazios).
+
+4ª Não é AVL, a sub-árvore da direita, de raíz 12, está desbalanceada para direita.
