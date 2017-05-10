@@ -1,0 +1,3 @@
+Não, para formar um ciclo seria necessário que o caminho encerrasse no mesmo vértice de que partiu.
+
+OBS: Um ciclo é formado no subgrafo, caminho C1 = {17, 6, 5, 8, 17 <-}. 
