@@ -130,17 +130,15 @@ int main() {
                 cin >> op;
                 cin.ignore();
                 
+                aux  = op.substr(4);
+                
                 switch(op[0]) {
-                    case 'A':
-                        aux  = op.substr(4);
-                        
+                    case 'A':                        
                         if(aux.compare(""))
                             hash.insert(aux);
                         break;
                     
                     case 'D':
-                        aux  = op.substr(4);
-                        
                         if(aux.compare(""))
                             hash.del(aux);
                         break;
