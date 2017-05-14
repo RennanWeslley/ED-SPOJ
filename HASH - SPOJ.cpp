@@ -40,8 +40,19 @@ class Hash {
             cout << this->size << endl;
             
             for(int i = 0; i < SIZE; i++)
-                if((this->table[i]).compare("Empty"))
+                if((this->table[i]).compare("Empty")) {
                     cout << i << ":" << this->table[i] << endl;
+                }
+        }
+        
+        void clear() {
+            if(this->empty())
+                return;
+            
+            for(int i = 0; i < SIZE; i++)
+                this->table[i] = "Empty";
+            
+            this->size = 0;
         }
 
         int find(string name) {
@@ -51,25 +62,36 @@ class Hash {
             int pos = hashK(name);
             int value = pos;
             
-            for(int i = 1 ; i < 20; pos = ((value + (i*i) + 23 * i) % SIZE), i++)
+            for(int i = 1, j = 0 ; j < 20; j++) {
                 if(!name.compare(this->table[pos]))
                     return pos;
+                
+                if(i < 20) {
+                    pos = ((value + (i*i) + 23 * i) % SIZE);
+                    i++;
+                }
+            }
                 
             return -1;
         }
 
         int insert(string name) {
-            if(this->full() || this->find(name) > 0)
+            if(this->full() || this->find(name) > -1)
                 return 0;
             
             int pos = hashK(name);
             int value = pos;
             
-            for(int i = 1 ; i < 20; pos = ((value + (i*i) + 23 * i) % SIZE), i++) {
+            for(int i = 1, j = 0 ; j < 20; j++) {
                 if(!(this->table[pos]).compare("Empty")) {
                     this->table[pos] = name;
                     this->size++;
                     return 1;
+                }
+                
+                if(i < 20) {
+                    pos = ((value + (i*i) + 23 * i) % SIZE);
+                    i++;
                 }
             }
             
@@ -97,29 +119,39 @@ int main() {
     string op, aux;  
     
    cin >> n;
+   cin.ignore();
     
     do {
         cin >> t;
+        cin.ignore();
         
-        do {
-            cin >> op;
-            
-            switch(op[0]) {
-                case 'A':
-                    aux  = op.substr(4);
-                    
-                    hash.insert(aux);
-                    break;
+        if(t)
+            do {
+                cin >> op;
+                cin.ignore();
                 
-                case 'D':
-                    aux  = op.substr(4);
+                switch(op[0]) {
+                    case 'A':
+                        aux  = op.substr(4);
+                        
+                        if(aux.compare(""))
+                            hash.insert(aux);
+                        break;
                     
-                    hash.del(aux);
-                    break;
-            }
-        }while(--t);
+                    case 'D':
+                        aux  = op.substr(4);
+                        
+                        if(aux.compare(""))
+                            hash.del(aux);
+                        break;
+                }
+                
+                aux = "";
+                
+            }while(--t);
         
         hash.print();
+        hash.clear();
         
     }while(--n);
 }
