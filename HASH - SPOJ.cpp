@@ -37,11 +37,11 @@ class Hash {
         }
 
         void print() {
-            cout << this->size << endl;
+            cout << endl << this->size;
             
             for(int i = 0; i < SIZE; i++)
                 if((this->table[i]).compare("Empty")) {
-                    cout << i << ":" << this->table[i] << endl;
+                    cout << endl << i << ":" << this->table[i];
                 }
         }
         
