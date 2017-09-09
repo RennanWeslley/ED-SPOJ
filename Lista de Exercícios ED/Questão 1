@@ -2,7 +2,7 @@ Listas Sequenciais:
     - Possui a vantagem do acesso direto à uma determinada posição.
     
     - Memória limitada, pelo fato de seu tamanho ser predefinido, isso pode fazer com que ocorra desperdício de memória ou falta de espaços
-    para novos elementos mais rapidamentes que as do tipo dinâmico.
+    para novos elementos mais rapidamente que as do tipo dinâmico.
     
 Listas Dinâmicas:
     - Não possui acesso direto como na Lista Sequencial, para acessar uma determinada posição é necessário partir da cabeça da lista 
